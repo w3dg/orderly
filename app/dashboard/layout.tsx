@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-// import { Inter } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  title: "Orderly",
-  description: "Inventory for your orders",
+  title: "Orderly | Dashboard",
+  description: "Dashboard",
 };
 
 export default function RootLayout({
