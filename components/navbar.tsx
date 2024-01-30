@@ -5,7 +5,9 @@ const Navbar = () => {
   return (
     <div className="border-b bg-[#f7f7f7]">
       <nav className="w-full max-w-4xl mx-auto flex items-center justify-between py-3 px-4">
-        <ResponsiveLogo />
+        <Link href={"/"}>
+          <ResponsiveLogo />
+        </Link>
         <div className="flex gap-2">
           <Link
             href={"/dashboard/products"}
@@ -27,7 +29,7 @@ const Navbar = () => {
           </Link>
           <Link
             href={"/dashboard"}
-            className="px-3 py-2 rounded-md border border-transparent bg-purple-700 text-white hover:border-neutral-300  hover:bg-purple-600/60"
+            className="px-3 py-2 rounded-md border border-transparent bg-indigo-700 text-white hover:border-neutral-300  hover:bg-indigo-600/60"
           >
             Dashboard
           </Link>
