@@ -1,6 +1,4 @@
 const Dashboard = async () => {
-  // const response = await fetch("http://localhost:3000/api");
-  // const { message } = await response.json();
 
   return (
     <>

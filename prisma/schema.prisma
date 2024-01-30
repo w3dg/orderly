@@ -10,21 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model product {
-  pid      BigInt     @id @default(autoincrement())
+  pid      Int     @id @default(sequence())
   name   String
   desc    String
   summary String
   sellingPrice Float
   costPrice Float
   isFeatured Boolean
-  createdAt DateTime
-  updatedAt DateTime
+  
 }
 model category{
   cid BigInt @id @default(autoincrement())
   name   String
   desc    String
   slug  String
-  createdAt DateTime
-  updatedAt DateTime
+  
 }
