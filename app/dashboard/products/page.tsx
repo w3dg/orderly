@@ -1,23 +1,104 @@
+"use client";
+
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import EditButton from "./editbutton";
+import DeleteButton from "./deletebutton";
+import { ProductSchema } from "@/app/validators/validator";
+
+const data: ProductSchema[] = [
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+    isFeatured: true,
+  },
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+    isFeatured: false,
+  },
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+    isFeatured: false,
+  },
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+
+    isFeatured: false,
+  },
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+    isFeatured: false,
+  },
+  {
+    name: "Iphone 15",
+    summary: "Brand new iphone for the cool people",
+    sellingPrice: 123,
+    costPrice: 90,
+    desc: "This is a very long description of the same thing i dont even know",
+    isFeatured: false,
+  },
+];
+
 const Products = async () => {
-  // const productFetchBody = {
-  //   productId: 1,
-  // };
-  // const response = await fetch("http://localhost:3000/api/products", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(productFetchBody),
-  // });
-
-  // const json = await response.json();
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <section className="flex gap-2 lg:gap-3 flex-col pt-4 items-center w-full max-w-4xl mx-auto px-5">
-        {/* <h2 className="text-4xl">{message}</h2> */}
-        {/* <p>{JSON.stringify(json)}</p> */}
-        <h2 className="text-4xl">Products</h2>
+    <main className="flex min-h-screen flex-col gap-2">
+      <section className="pt-4 w-full max-w-4xl mx-auto px-5">
+        <div className="flex flex-col gap-2 items-center">
+          <h2 className="text-4xl">Products</h2>
+          <p>All products in the inventory</p>
+        </div>
+        <div className="mt-8">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[160px]">Item name</TableHead>
+                <TableHead>Summary</TableHead>
+                <TableHead className="hidden lg:block">Description</TableHead>
+                <TableHead className="text-right">CP</TableHead>
+                <TableHead className="text-right">SP</TableHead>
+                <TableHead className="text-right">Edit</TableHead>
+                <TableHead className="text-right">Delete</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.map((item, idx) => {
+                return (
+                  <TableRow key={idx}>
+                    <TableCell className="w-[160px]">{item.name}</TableCell>
+                    <TableCell>{item.summary}</TableCell>
+                    <TableCell className="hidden lg:block">{item.desc}</TableCell>
+                    <TableCell className="text-right">{item.costPrice}</TableCell>
+                    <TableCell className="text-right">{item.sellingPrice}</TableCell>
+                    <TableCell className="text-right">
+                      <EditButton id={idx} product={item} />
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <DeleteButton id={idx} />
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
       </section>
     </main>
   );

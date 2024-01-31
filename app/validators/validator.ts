@@ -13,3 +13,4 @@ export const CategorySchema = z.object({
   slug : z.string(),
 });
 
+export type ProductSchema = z.infer<typeof ProductSchema>;

@@ -14,12 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="en">
-        <body className={GeistSans.className}>
-          <DashboardNavbar></DashboardNavbar>
-          {children}
-        </body>
-      </html>
+      <DashboardNavbar></DashboardNavbar>
+      {children}
     </>
   );
 }
