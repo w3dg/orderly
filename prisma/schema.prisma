@@ -6,23 +6,30 @@ generator client {
 }
 
 datasource db {
-  provider = "cockroachdb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 model product {
-  pid      Int     @id @default(sequence())
+  pid      Int     @id @default(autoincrement())
+  
+  
+  categoryid      Int
+  category   category @relation(fields: [categoryid], references: [cid])
   name   String
   desc    String
   summary String
   sellingPrice Float
   costPrice Float
   isFeatured Boolean
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  
   
 }
 model category{
-  cid BigInt @id @default(autoincrement())
+  cid Int @id @default(autoincrement())
   name   String
   desc    String
   slug  String
-  
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  product product[]
 }
