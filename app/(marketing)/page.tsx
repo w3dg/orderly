@@ -20,7 +20,7 @@ export default function Home() {
                 operations and drives profitability.
               </h2>
               <Link href={"/dashboard"}>
-                <Button className="bg-indigo-700 hover:bg-indigo-900 font-bold">Manage Store</Button>
+                <Button className="bg-indigo-700 hover:bg-indigo-900 text-white font-bold">Manage Store</Button>
               </Link>
             </div>
           </div>

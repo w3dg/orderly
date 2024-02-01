@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,11 +9,25 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
+import axios from "axios";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const DeleteButton = ({ id }: { id: number }) => {
+  const [open, setOpen] = useState(false);
+
+  const router = useRouter();
+
+  const deleteProduct = async (id: number) => {
+    console.log("id of the item ", id);
+    await axios.delete(`/api/products?pid=${id}`);
+    setOpen(false);
+    router.refresh();
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="p-2 text-red-600 bg-transparent hover:bg-red-200">
         <Button className="text-red-600 hover:bg-red-200">
           <Trash2 size={16} />
@@ -26,8 +39,9 @@ const DeleteButton = ({ id }: { id: number }) => {
           <DialogDescription>This will delete the item from the store.</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          {/* form */}
-          <Button variant={"destructive"}>Delete {id}</Button>
+          <Button variant={"destructive"} onClick={() => deleteProduct(id)}>
+            Delete {id}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

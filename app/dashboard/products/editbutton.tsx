@@ -1,5 +1,6 @@
 "use client";
 
+import prisma from "@/app/db/db";
 import { ProductSchema } from "@/app/validators/validator";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,30 +29,30 @@ const DeleteButton = ({ id, product }: { id: number; product: ProductSchema }) =
           <DialogTitle>Editing Product</DialogTitle>
           <DialogDescription>Make changes and then submit to reflect your changes</DialogDescription>
         </DialogHeader>
-        <form action="">
+        <form>
           <div>
             <Label>Product Name</Label>
-            <Input defaultValue={product.name} />
+            <Input name="name" defaultValue={product.name} />
           </div>
           <div>
             <Label>Description</Label>
-            <Input defaultValue={product.desc} />
+            <Input name="desc" defaultValue={product.desc} />
           </div>
           <div>
             <Label>Product Summary</Label>
-            <Input defaultValue={product.summary} />
+            <Input name="summary" defaultValue={product.summary} />
           </div>
           <div>
             <Label>Cost Price</Label>
-            <Input defaultValue={product.costPrice} />
+            <Input name="costPrice" defaultValue={product.costPrice} />
           </div>
           <div>
             <Label>Selling Price</Label>
-            <Input defaultValue={product.sellingPrice} />
+            <Input name="sellingPrice" defaultValue={product.sellingPrice} />
           </div>
           <div>
             <Label>Featured</Label>
-            <Input defaultValue={product.isFeatured.toString()} />
+            <Input name="isFeatured" defaultValue={product.isFeatured.toString()} />
           </div>
           <DialogFooter>
             <Button className="bg-blue-600 hover:bg-blue-400">Save Edit {id}</Button>

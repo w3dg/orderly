@@ -1,9 +1,9 @@
-"use client";
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import EditButton from "./editbutton";
 import DeleteButton from "./deletebutton";
 import { ProductSchema } from "@/app/validators/validator";
+import axios from "axios";
+import prisma from "@/app/db/db";
 
 const data: ProductSchema[] = [
   {
@@ -58,6 +58,8 @@ const data: ProductSchema[] = [
 ];
 
 const Products = async () => {
+  const products = await prisma.product.findMany();
+  // console.log(products);
   return (
     <main className="flex min-h-screen flex-col gap-2">
       <section className="pt-4 w-full max-w-4xl mx-auto px-5">
@@ -79,7 +81,7 @@ const Products = async () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.map((item, idx) => {
+              {products.map((item, idx) => {
                 return (
                   <TableRow key={idx}>
                     <TableCell className="w-[160px]">{item.name}</TableCell>
@@ -91,7 +93,7 @@ const Products = async () => {
                       <EditButton id={idx} product={item} />
                     </TableCell>
                     <TableCell className="text-right">
-                      <DeleteButton id={idx} />
+                      <DeleteButton id={item.pid} />
                     </TableCell>
                   </TableRow>
                 );
