@@ -1,11 +1,31 @@
-const Dashboard = async () => {
+"use client";
 
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+const Dashboard = () => {
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between">
-        <section className="flex gap-2 lg:gap-3 flex-col pt-4 items-center w-full max-w-4xl mx-auto px-5">
-          {/* <h2 className="text-4xl">{message}</h2> */}
-          <h2 className="text-4xl">Dashboard Home</h2>
+      <main className="flex h-full flex-col items-center justify-between">
+        <section className="flex gap-4 lg:gap-6 flex-col pt-4 items-center w-full mx-auto px-5">
+          <h2 className="text-4xl">Dashboard</h2>
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-10/12">
+            {[1, 2, 3, 4].map(() => {
+              return (
+                <Card className="bg-neutral-900">
+                  <CardHeader>
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>Card Description</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Card Content</p>
+                  </CardContent>
+                  <CardFooter>
+                    <p>Card Footer</p>
+                  </CardFooter>
+                </Card>
+              );
+            })}
+          </section>
         </section>
       </main>
     </>

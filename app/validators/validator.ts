@@ -8,11 +8,13 @@ export const ProductSchema = z.object({
   isFeatured: z.boolean(),
 });
 export const CategorySchema = z.object({
-  name : z.string(),
-  desc : z.string(),
-  slug : z.string(),
+  name: z.string(),
+  desc: z.string(),
+  slug: z.string(),
 });
 export const OrderSchema = z.object({
   quantity : z.number(),
   
 });
+
+export type ProductSchema = z.infer<typeof ProductSchema>;
