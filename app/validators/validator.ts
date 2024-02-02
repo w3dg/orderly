@@ -12,4 +12,7 @@ export const CategorySchema = z.object({
   desc : z.string(),
   slug : z.string(),
 });
-
+export const OrderSchema = z.object({
+  quantity : z.number(),
+  
+});
