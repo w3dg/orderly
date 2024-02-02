@@ -9,27 +9,36 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model product {
-  pid      Int     @id @default(autoincrement())
-  
-  
-  categoryid      Int
-  category   category @relation(fields: [categoryid], references: [cid])
-  name   String
-  desc    String
-  summary String
+  pid Int @id @default(autoincrement())
+
+  categoryid   Int
+  category     category  @relation(fields: [categoryid], references: [cid])
+  name         String
+  desc         String
+  summary      String
   sellingPrice Float
-  costPrice Float
-  isFeatured Boolean
-  createdAt DateTime? @default(now()) @db.Timestamptz(6)
-  
-  
+  costPrice    Float
+  isFeatured   Boolean
+  createdAt    DateTime? @default(now()) @db.Timestamptz(6)
+
+  order order[]
 }
-model category{
-  cid Int @id @default(autoincrement())
-  name   String
-  desc    String
-  slug  String
+
+model category {
+  cid       Int       @id @default(autoincrement())
+  name      String
+  desc      String
+  slug      String
   createdAt DateTime? @default(now()) @db.Timestamptz(6)
-  product product[]
+  product   product[]
+}
+
+model order {
+  oid       Int       @id @default(autoincrement())
+  quantity  Int
+  orderDate DateTime? @default(now()) @db.Timestamptz(6)
+  productId Int
+  product   product   @relation(fields: [productId], references: [pid])
 }
