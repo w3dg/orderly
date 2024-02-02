@@ -36,7 +36,7 @@ const Products = () => {
     <main className="flex min-h-screen flex-col gap-2">
       <section className="pt-4 w-full max-w-4xl mx-auto px-5">
         <div className="flex flex-col gap-2 items-center">
-          <h2 className="text-4xl">Products</h2>
+          <h2 className="text-4xl font-bold">Products</h2>
           <p>All products in the inventory</p>
           <AddButton></AddButton>
         </div>

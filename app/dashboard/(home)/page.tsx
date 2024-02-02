@@ -7,7 +7,7 @@ const Dashboard = () => {
     <>
       <main className="flex h-full flex-col items-center justify-between">
         <section className="flex gap-4 lg:gap-6 flex-col pt-4 items-center w-full mx-auto px-5">
-          <h2 className="text-4xl">Dashboard</h2>
+          <h2 className="text-4xl font-bold">Dashboard</h2>
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-10/12">
             {[1, 2, 3, 4].map(() => {
               return (

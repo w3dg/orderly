@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
 
 import stockprices from "@/public/stockprices.svg";
+import FeaturedProducts from "./featuredproducts";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-between">
+      <main className="flex flex-col items-center justify-between">
         <section className="flex gap-2 lg:gap-3 flex-col pt-4 items-center w-full max-w-4xl mx-auto px-5">
           <div className="flex flex-col gap-2 items-center justify-center py-4 lg:py-20 lg:items-start lg:gap-6 lg:flex-row-reverse">
             <Image height={200} src={stockprices} alt="Illustration" />
@@ -26,6 +27,9 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <section className="px-5 md:px-10 lg:px-16 w-full max-w-6xl mx-auto flex flex-col gap-5">
+        <FeaturedProducts />
+      </section>
     </>
   );
 }

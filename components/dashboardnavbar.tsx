@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BadgeDollarSign, LayoutDashboard, PackageSearch, SquareStack } from "lucide-react";
+import { Wallet2, LayoutDashboard, PackageSearch, SquareStack } from "lucide-react";
 import ResponsiveLogo from "./ResponsiveLogo";
 
 const DashboardNavbar = () => {
@@ -50,13 +50,13 @@ const DashboardNavbar = () => {
 
           {/* Revenue */}
           <Link
-            href={"/dashboard/revenue"}
+            href={"/dashboard/orders"}
             className={`hidden md:flex gap-2  px-3 py-2 rounded-md border border-transparent hover:border-neutral-700  hover:bg-neutral-800/60 ${
-              pathname === "/dashboard/revenue" ? "text-red-200 bg-red-400/20" : ""
+              pathname === "/dashboard/orders" ? "text-red-200 bg-red-400/20" : ""
             }`}
           >
-            <BadgeDollarSign />
-            <p>Revenue</p>
+            <Wallet2 />
+            <p>Orders</p>
           </Link>
         </div>
       </nav>
@@ -92,12 +92,12 @@ const DashboardNavbar = () => {
             <SquareStack />
           </Link>
           <Link
-            href={"/dashboard/revenue"}
+            href={"/dashboard/orders"}
             className={`px-3 py-2 rounded-md border border-transparent hover:border-neutral-700  hover:bg-neutral-800/60 ${
-              pathname === "/dashboard/revenue" ? "text-red-800 bg-red-400/20" : ""
+              pathname === "/dashboard/orders" ? "text-red-800 bg-red-400/20" : ""
             }`}
           >
-            <BadgeDollarSign />
+            <Wallet2 />
           </Link>
         </div>
       </nav>
