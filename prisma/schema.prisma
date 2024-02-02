@@ -18,6 +18,7 @@ model product {
   name         String
   desc         String
   summary      String
+  url          String
   sellingPrice Float
   costPrice    Float
   isFeatured   Boolean
