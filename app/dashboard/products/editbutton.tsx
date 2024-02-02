@@ -26,6 +26,7 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
   const [productSummary, setProductSummary] = useState(product.summary);
   const [costPrice, setCostPrice] = useState(product.costPrice);
   const [sellingPrice, setSellingPrice] = useState(product.sellingPrice);
+  const [imageUrl, setImageUrl] = useState(product.url);
   const [featured, setFeatured] = useState(product.isFeatured);
 
   const [open, setOpen] = useState(false);
@@ -44,6 +45,7 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
       name: productName,
       desc: productDescription,
       summary: productSummary,
+      url: imageUrl,
       sellingPrice,
       costPrice,
       isFeatured: featured,
@@ -76,15 +78,39 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
         <form className="grid gap-3" onSubmit={handleSubmit}>
           <div>
             <Label>Product Name</Label>
-            <Input name="name" defaultValue={product.name} onChange={(e) => setProductName(e.target.value)} />
+            <Input
+              name="name"
+              placeholder="Product name"
+              defaultValue={product.name}
+              onChange={(e) => setProductName(e.target.value)}
+            />
           </div>
           <div>
             <Label>Description</Label>
-            <Input name="desc" defaultValue={product.desc} onChange={(e) => setProductDescription(e.target.value)} />
+            <Input
+              name="desc"
+              placeholder="Product Description"
+              defaultValue={product.desc}
+              onChange={(e) => setProductDescription(e.target.value)}
+            />
           </div>
           <div>
             <Label>Product Summary</Label>
-            <Input name="summary" defaultValue={product.summary} onChange={(e) => setProductSummary(e.target.value)} />
+            <Input
+              name="summary"
+              placeholder="Product summary"
+              defaultValue={product.summary}
+              onChange={(e) => setProductSummary(e.target.value)}
+            />
+          </div>
+          <div>
+            <Label>Product Image URL</Label>
+            <Input
+              name="url"
+              defaultValue={product.url}
+              placeholder="https://unsplash.it/500/500"
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
           </div>
           <div>
             <Label>Cost Price</Label>

@@ -44,12 +44,13 @@ export async function PUT(request: Request) {
   const body = await request.json();
   const query2 = searchParams.get("cid");
   try {
-    const { name, desc, summary, sellingPrice, costPrice, isFeatured } = ProductSchema.parse(body);
+    const { name, desc, summary, sellingPrice, costPrice, isFeatured, url } = ProductSchema.parse(body);
     const pdata = {
       name,
       desc,
       summary,
       sellingPrice,
+      url,
       costPrice,
       isFeatured,
     };

@@ -26,6 +26,7 @@ const AddButton = () => {
   const [productSummary, setProductSummary] = useState("");
   const [costPrice, setCostPrice] = useState(0);
   const [sellingPrice, setSellingPrice] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
   const [featured, setFeatured] = useState(false);
 
   const [open, setOpen] = useState(false);
@@ -43,6 +44,7 @@ const AddButton = () => {
       name: productName,
       desc: productDescription,
       summary: productSummary,
+      url: imageUrl,
       sellingPrice,
       costPrice,
       isFeatured: featured,
@@ -100,6 +102,15 @@ const AddButton = () => {
               placeholder="Product summary"
               defaultValue={productSummary}
               onChange={(e) => setProductSummary(e.target.value)}
+            />
+          </div>
+          <div>
+            <Label>Product Image URL</Label>
+            <Input
+              name="url"
+              placeholder="https://unsplash.it/500/500"
+              defaultValue={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
             />
           </div>
           <div>

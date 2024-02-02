@@ -8,4 +8,5 @@ export interface Product {
   pid: number;
   sellingPrice: number;
   costPrice: number;
+  url: string;
 }
