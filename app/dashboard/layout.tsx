@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import DashboardNavbar from "@/components/dashboardnavbar";
@@ -18,6 +19,7 @@ export default function RootLayout({
       <DashboardNavbar></DashboardNavbar>
       <div className="w-full lg:overflow-y-auto flex flex-col">
         <Topbar></Topbar>
+        <Toaster />
         <div>{children}</div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import axios from "axios";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const DeleteButton = ({ id }: { id: number }) => {
   const [open, setOpen] = useState(false);
@@ -21,16 +22,25 @@ const DeleteButton = ({ id }: { id: number }) => {
 
   const deleteProduct = async (id: number) => {
     console.log("id of the item ", id);
-    await axios.delete(`/api/products?pid=${id}`);
+    try {
+      const { data } = await axios.delete(`/api/products?pid=${id}`);
+      console.log("delete", data);
+      // TODO: Refresh page after delete
+
+      // router.replace("/dashboard/products");
+      location.reload();
+    } catch (error) {
+      console.log(error);
+      toast("failed to delete");
+    }
     setOpen(false);
-    router.refresh();
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild className="p-2 text-red-600 bg-transparent hover:bg-red-200">
-        <Button className="text-red-600 hover:bg-red-200">
-          <Trash2 size={16} />
+      <DialogTrigger asChild className="p-2 text-red-600 ">
+        <Button className="text-red-600 bg-transparent hover:bg-red-200/60">
+          <Trash2 size={18} />
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -40,7 +50,7 @@ const DeleteButton = ({ id }: { id: number }) => {
         </DialogHeader>
         <DialogFooter>
           <Button variant={"destructive"} onClick={() => deleteProduct(id)}>
-            Delete {id}
+            Delete
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit2 } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { FormEvent, useState } from "react";
 import axios from "axios";
 
@@ -20,19 +20,18 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => {
-  const [productName, setProductName] = useState(product.name);
-  const [productDescription, setProductDescription] = useState(product.desc);
-  const [productSummary, setProductSummary] = useState(product.summary);
-  const [costPrice, setCostPrice] = useState(product.costPrice);
-  const [sellingPrice, setSellingPrice] = useState(product.sellingPrice);
-  const [featured, setFeatured] = useState(product.isFeatured);
+const AddButton = () => {
+  const [productName, setProductName] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productSummary, setProductSummary] = useState("");
+  const [costPrice, setCostPrice] = useState(0);
+  const [sellingPrice, setSellingPrice] = useState(0);
+  const [featured, setFeatured] = useState(false);
 
   const [open, setOpen] = useState(false);
-  // The next line pulls pid id from the given product
-  // todo: expand the product schema for category as well
-  // @ts-ignore
-  const pid = product.pid;
+
+  // TODO: category id
+  const categoryid = 2;
 
   const router = useRouter();
 
@@ -50,55 +49,68 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
     };
 
     try {
-      await axios.put(`http://localhost:3000/api/products?pid=${pid}`, formData);
-      setOpen(false);
-      // router.refresh();
+      const { data } = await axios.post(`http://localhost:3000/api/products?categoryid=${categoryid}`, formData);
+      console.log("Form data posted", formData);
+      console.log(data);
       location.reload();
     } catch (error) {
       console.log(error);
-      toast("Invalid data supplied for edit");
+      toast("Failed to add product. Supply valid details");
     }
     setOpen(false);
+    router.refresh();
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild className="p-2">
-        <Button className="text-blue-600 bg-transparent hover:bg-blue-200/60">
-          <Edit2 size={18} />
+      <DialogTrigger asChild className="p-2 my-2 bg-amber-600 bg hover:bg-amber-400">
+        <Button className="text-white gap-2">
+          <PlusCircle size={24} />
+          Add Item
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Editing Product</DialogTitle>
-          <DialogDescription>Make changes and then submit to reflect your changes</DialogDescription>
+          <DialogTitle>Add new Product</DialogTitle>
+          <DialogDescription>Enter details for the new product</DialogDescription>
         </DialogHeader>
         <form className="grid gap-3" onSubmit={handleSubmit}>
           <div>
             <Label>Product Name</Label>
-            <Input name="name" defaultValue={product.name} onChange={(e) => setProductName(e.target.value)} />
+            <Input
+              name="name"
+              defaultValue={productName}
+              placeholder="Product name"
+              onChange={(e) => setProductName(e.target.value)}
+            />
           </div>
           <div>
-            <Label>Description</Label>
-            <Input name="desc" defaultValue={product.desc} onChange={(e) => setProductDescription(e.target.value)} />
+            <Label>Product Description</Label>
+            <Input
+              name="desc"
+              defaultValue={productDescription}
+              placeholder="Product Description"
+              onChange={(e) => setProductDescription(e.target.value)}
+            />
           </div>
           <div>
             <Label>Product Summary</Label>
-            <Input name="summary" defaultValue={product.summary} onChange={(e) => setProductSummary(e.target.value)} />
+            <Input
+              name="summary"
+              placeholder="Product summary"
+              defaultValue={productSummary}
+              onChange={(e) => setProductSummary(e.target.value)}
+            />
           </div>
           <div>
             <Label>Cost Price</Label>
-            <Input
-              name="costPrice"
-              defaultValue={product.costPrice}
-              onChange={(e) => setCostPrice(Number(e.target.value))}
-            />
+            <Input name="costPrice" defaultValue={costPrice} onChange={(e) => setCostPrice(Number(e.target.value))} />
           </div>
           <div>
             <Label>Selling Price</Label>
             <Input
               name="sellingPrice"
-              defaultValue={product.sellingPrice}
+              defaultValue={sellingPrice}
               onChange={(e) => setSellingPrice(Number(e.target.value))}
             />
           </div>
@@ -106,13 +118,13 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
             <Label>Featured</Label>
             <Input
               name="isFeatured"
-              defaultValue={product.isFeatured.toString()}
+              defaultValue={featured ? "true" : "false"}
               onChange={(e) => setFeatured(e.target.value === "true" ? true : false)}
             />
           </div>
           <DialogFooter>
             <Button type="submit" className="bg-blue-600 hover:bg-blue-400 text-white">
-              Save
+              Add Item
             </Button>
           </DialogFooter>
         </form>
@@ -120,4 +132,4 @@ const EditButton = ({ id, product }: { id: number; product: ProductSchema }) => 
     </Dialog>
   );
 };
-export default EditButton;
+export default AddButton;
