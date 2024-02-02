@@ -15,11 +15,12 @@ export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = Number(searchParams.get("categoryid"));
   try {
-    const { name, desc, summary, sellingPrice, costPrice, isFeatured } = ProductSchema.parse(body);
+    const { name, desc, summary, url, sellingPrice, costPrice, isFeatured } = ProductSchema.parse(body);
     const pdata = {
       name,
       desc,
       summary,
+      url,
       sellingPrice,
       costPrice,
       isFeatured,
