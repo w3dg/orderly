@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Image from "next/image";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { Product } from "@/app/interfaces/product";
@@ -13,9 +14,9 @@ const Products = () => {
 
   const getData = async () => {
     const { data } = await axios.get("/api/products");
-    // const featuredProducts = data.filter((item: Product) => item.isFeatured);
+    const featuredProductsFirst = data.sort((item1: Product) => (item1.isFeatured ? -1 : 1));
     setLoading(false);
-    console.log(products);
+    console.log(featuredProductsFirst);
     setProducts(data);
   };
 
@@ -45,6 +46,9 @@ const Products = () => {
                     <CardHeader>
                       <CardTitle>{item.name}</CardTitle>
                       <CardDescription>{item.summary}</CardDescription>
+                      <div className="overflow-hidden w-full h-40 text-center">
+                        <img alt="Product picture" className="object-cover" src={item.url} />
+                      </div>
                     </CardHeader>
                     <CardContent>
                       <p className="text-right p-2">Price: {item.sellingPrice}</p>
